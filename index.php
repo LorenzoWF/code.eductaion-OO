@@ -5,7 +5,7 @@
     <title>PHP - OO</title>
 
     <link rel="stylesheet" type="text/css" href="plugins/css/bootstrap.min.css">
-    <link rel="stylesheet" href="plugins/font-awesome-4.5.0/css/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="plugins/css/dataTables.bootstrap.min.css"> 
 
   </head>
   <body>
