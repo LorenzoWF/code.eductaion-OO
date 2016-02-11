@@ -20,8 +20,6 @@ $cliente->setEndereco($endereco);
 $crud = new ServiceDB($conn, $cliente);
 $resultado = $crud->cadastrar();
 
-//print_r($resultado);
-
 if($resultado = true){
    header ('Location: ../../index.php');
 }

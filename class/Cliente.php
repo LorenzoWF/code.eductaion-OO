@@ -1,6 +1,8 @@
 <?php
 
-class Cliente
+require_once 'InterfaceCRUD.php';
+
+class Cliente implements InterfaceCRUD
 {
     private $tabela = 'clientes';
     private $parametros = array();
