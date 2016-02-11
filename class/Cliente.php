@@ -6,13 +6,31 @@ class Cliente
     private $parametros = array();
 
     //SETTERS
-    public function novoCliente($nome, $idade, $cpf, $endereco)
+    public function setNome($nome)
     {
       $this->parametros['nome'] = $nome;
+    }
+
+    public function setIdade($idade)
+    {
       $this->parametros['idade'] = $idade;
+    }
+
+    public function setTipoCliente($tipoCliente)
+    {
+      $this->parametros['tipocliente'] = $tipoCliente;
+    }
+
+    public function setCpf($cpf)
+    {
       $this->parametros['cpf'] = $cpf;
+    }
+
+    public function setEndereco($endereco)
+    {
       $this->parametros['endereco'] = $endereco;
     }
+
 
     //GETERS
     public function getTabela()

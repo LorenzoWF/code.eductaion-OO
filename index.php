@@ -19,10 +19,11 @@
     <?php
 
       require_once('class/Cliente.php');
+      require_once('config/connect.php');
       require_once('class/ServiceDB.php');
 
       $cliente = new Cliente();
-      $consulta = new ServiceDB($cliente);
+      $consulta = new ServiceDB($conn, $cliente);
       $resultado = $consulta->listar();
 
     ?>
@@ -66,7 +67,11 @@
                               <div class="panel-body">
                                 <?php
                                   echo "Idade: ".$lista['idade']."</br>";
-                                  echo "CPF: ".$lista['cpf']."</br>";
+                                  if($lista['tipocliente'] == 1){
+                                    echo "CPF: ".$lista['cpf']."</br>";
+                                  } else{
+                                    echo "CNPJ: ".$lista['cpf']."</br>";
+                                  }
                                   echo "Endereço: ".$lista['endereco']."</br>";
                                 ?>
                               </div>
@@ -85,6 +90,67 @@
           </table>
 
         </div>
+
+        <div class="col-md-5">
+
+        </div>
+
+        <div class="col-md-2">
+
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Cadastrar</button>
+
+          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title" id="exampleModalLabel">Cadastrar</h4>
+                </div>
+                <div class="modal-body">
+                  <form class="form-inline" action="midd/Cliente/cadastrar.php" method="post">
+
+                    <div class="form-group">
+                      <label class="control-label">Nome:</label>
+                      <input type="text" class="form-control" id="nome" name="nome">
+                    </div>
+
+                    <div class="form-group">
+                      <label class="control-label">Tipo de cliente:</label>
+
+                      <label><input type="radio" name="tipoCliente" value="1">P. Física</label>
+                      <label><input type="radio" name="tipoCliente" value="2">P. Jurídica</label>
+
+                    </div>
+
+                    <br><br>
+
+                    <div class="form-group">
+                      <label class="control-label">Idade:</label>
+                      <input type="number" class="form-control" id="idade" name="idade" style="width:75px;">
+
+                      <label class="control-label" style="margin-left: 50px;">CPF/ CNPJ:</label>
+                      <input type="text" class="form-control" id="cpf" name="cpf" style="width:200px;">
+                    </div>
+
+                    <br><br>
+
+                    <div class="form-group">
+                      <label class="control-label">Endereco:</label>
+                      <input type="text" class="form-control" id="endereco" name="endereco" style="width: 480px;">
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                  <button type="submit" class="btn btn-primary">Cadastrar</button>
+                </div>
+                </form>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
       </div>
 
     </div>
