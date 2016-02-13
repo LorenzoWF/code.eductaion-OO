@@ -1,5 +1,7 @@
 <?php
 
+namespace Model\ServiceDB;
+
 class ServiceDB
 {
   private $conn;
@@ -8,7 +10,7 @@ class ServiceDB
 
   public function __construct(\PDO $conn, $classe)
   {
-    $this->conn = $conn;;
+    $this->conn = $conn;
     $this->classe = $classe;
     $this->tabela = $classe->getTabela();
   }

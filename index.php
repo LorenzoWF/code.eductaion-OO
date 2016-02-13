@@ -18,12 +18,21 @@
 
     <?php
 
-      require_once('class/Cliente.php');
-      require_once('config/connect.php');
-      require_once('class/ServiceDB.php');
+      define("CLASS_DIR","src/");
+      set_include_path(get_include_path().PATH_SEPARATOR.CLASS_DIR);
+      spl_autoload_register(function ($class) {
+          require_once(str_replace('\\', '/', $class . '.php'));
+      });
 
-      $cliente = new Cliente();
-      $consulta = new ServiceDB($conn, $cliente);
+      /*require_once 'autoload.php';
+
+      $class = "";
+      spl_autoload_register(autoload($class));*/
+
+      require_once 'config/connect.php';
+
+      $cliente = new Model\Cliente\Cliente();
+      $consulta = new Model\ServiceDB\ServiceDB($conn, $cliente);
       $resultado = $consulta->listar();
 
     ?>
@@ -42,6 +51,7 @@
               <tr>
                 <th>Id</th>
                 <th>Nome</th>
+                <th>Tipo </th>
               </tr>
             </thead>
             <tbody>
@@ -81,6 +91,16 @@
 
                       </td>
 
+                      <td>
+                         <?php
+                            if ($lista['tipocliente'] == 1){
+                                echo "F";
+                            } else {
+                                echo "J";
+                            }
+                         ?>
+                      </td>
+
                     </tr>
 
 
@@ -107,7 +127,7 @@
                   <h4 class="modal-title" id="exampleModalLabel">Cadastrar</h4>
                 </div>
                 <div class="modal-body">
-                  <form class="form-inline" action="midd/Cliente/cadastrar.php" method="post">
+                  <form class="form-inline" action="src/Controller/Cliente/cadastrar.php" method="post">
 
                     <div class="form-group">
                       <label class="control-label">Nome:</label>

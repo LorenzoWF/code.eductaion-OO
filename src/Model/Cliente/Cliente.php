@@ -1,8 +1,10 @@
 <?php
 
-require_once 'InterfaceCRUD.php';
+namespace Model\Cliente;
 
-class Cliente implements InterfaceCRUD
+use Model\Interfaces\CRUD;
+
+class Cliente implements CRUD
 {
     private $tabela = 'clientes';
     private $parametros = array();
