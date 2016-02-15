@@ -1,0 +1,13 @@
+{
+  "autoload": {
+    "psr-0": {"Model\\": "src/"}
+  },
+
+  "name": "Autoloading/Composer",
+  "description": "Autoloading de bibliotecas com Composer",
+  "authors": [
+    {
+      "name": "LorenzoWF"
+    }
+  ]
+}

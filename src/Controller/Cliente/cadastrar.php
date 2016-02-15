@@ -1,12 +1,6 @@
 <?php
 
-require '../../../config/connect.php';
-
-define("CLASS_DIR","../../");
-set_include_path(get_include_path().PATH_SEPARATOR.CLASS_DIR);
-spl_autoload_register(function ($class) {
-   require_once(str_replace('\\', '/', $class . '.php'));
-});
+$loader = require '../../../vendor/autoload.php';
 
 $nome = $_POST['nome'];
 $idade = $_POST['idade'];
@@ -21,7 +15,10 @@ $cliente->setTipoCliente($tipoCliente);
 $cliente->setCpf($cpf);
 $cliente->setEndereco($endereco);
 
-$crud = new Model\ServiceDB\ServiceDB($conn, $cliente);
+$connect = new Model\ServiceDB\ConnectDB();
+$conn = $connect->getConn();
+$crud = new Model\ServiceDB\ServiceDB($conn);
+$crud->persist($cliente);
 $resultado = $crud->cadastrar();
 
 if($resultado == true){

@@ -2,19 +2,31 @@
 
 namespace Model\ServiceDB;
 
+use Model\Interfaces\CRUD;
+
 class ServiceDB
 {
   private $conn;
   private $classe;
   private $tabela;
 
-  public function __construct(\PDO $conn, $classe)
+  public function __construct(\PDO $conn)
   {
     $this->conn = $conn;
-    $this->classe = $classe;
-    $this->tabela = $classe->getTabela();
   }
 
+  public function persist($classe)
+  {
+    if ($classe instanceof CRUD){
+      $this->classe = $classe;
+      $this->tabela = $classe->getTabela();
+      return true;
+    }
+
+    return false;
+  }
+
+  //METODOS CRUD
   public function listar()
   {
     $query = "SELECT * FROM $this->tabela;";

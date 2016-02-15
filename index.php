@@ -18,21 +18,13 @@
 
     <?php
 
-      define("CLASS_DIR","src/");
-      set_include_path(get_include_path().PATH_SEPARATOR.CLASS_DIR);
-      spl_autoload_register(function ($class) {
-          require_once(str_replace('\\', '/', $class . '.php'));
-      });
+      $loader = require_once 'vendor/autoload.php';
 
-      /*require_once 'autoload.php';
-
-      $class = "";
-      spl_autoload_register(autoload($class));*/
-
-      require_once 'config/connect.php';
-
+      $connect = new Model\ServiceDB\ConnectDB();
+      $conn = $connect->getConn();
+      $consulta = new Model\ServiceDB\ServiceDB($conn);
       $cliente = new Model\Cliente\Cliente();
-      $consulta = new Model\ServiceDB\ServiceDB($conn, $cliente);
+      $consulta->persist($cliente);
       $resultado = $consulta->listar();
 
     ?>
