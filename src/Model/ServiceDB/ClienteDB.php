@@ -20,11 +20,6 @@ class ClienteDB
         $this->clientes[] = $cliente;
     }
 
-    public function getPersist()
-    {
-        return $this->clientes;
-    }
-
     public function flush()
     {
         foreach($this->clientes as $cliente){
