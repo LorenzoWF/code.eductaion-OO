@@ -11,9 +11,6 @@ $pass = $config['pass'];
 
 $conn = new \PDO($driver.':host='.$host.';port='.$port.';dbname='.$dbname, $user, $pass);
 
-//LIMPANDO TABELAS
-$conn->query("DROP TABLE IF EXISTS clientes;");
-
 //TABELA clientes
 
 //CRIAR TABELA
