@@ -22,10 +22,8 @@
 
       $connect = new Model\ServiceDB\ConnectDB();
       $conn = $connect->getConn();
-      $consulta = new Model\ServiceDB\ServiceDB($conn);
-      $cliente = new Model\Cliente\Cliente();
-      $consulta->persist($cliente);
-      $resultado = $consulta->listar();
+      $consulta = new Model\ServiceDB\ClienteDB($conn);
+      $resultado = $consulta->getAll();
 
     ?>
 
@@ -69,10 +67,10 @@
                               <div class="panel-body">
                                 <?php
                                   echo "Idade: ".$lista['idade']."</br>";
-                                  if($lista['tipocliente'] == 1){
+                                  if($lista['cnpj'] == null){
                                     echo "CPF: ".$lista['cpf']."</br>";
                                   } else{
-                                    echo "CNPJ: ".$lista['cpf']."</br>";
+                                    echo "CNPJ: ".$lista['cnpj']."</br>";
                                   }
                                   echo "Endereço: ".$lista['endereco']."</br>";
                                 ?>
@@ -85,7 +83,7 @@
 
                       <td>
                          <?php
-                            if ($lista['tipocliente'] == 1){
+                            if ($lista['cnpj'] == null){
                                 echo "F";
                             } else {
                                 echo "J";
@@ -141,7 +139,7 @@
                       <input type="number" class="form-control" id="idade" name="idade" style="width:75px;">
 
                       <label class="control-label" style="margin-left: 50px;">CPF/ CNPJ:</label>
-                      <input type="text" class="form-control" id="cpf" name="cpf" style="width:200px;">
+                      <input type="text" class="form-control" id="cpf" name="cpf_cnpj" style="width:200px;">
                     </div>
 
                     <br><br>
