@@ -3,6 +3,7 @@
 namespace Model\ServiceDB;
 
 use Model\Cliente\AbstractCliente;
+use Model\Cliente\Contracts\PF;
 
 class ClienteDB
 {
@@ -17,6 +18,11 @@ class ClienteDB
     public function persist(AbstractCliente $cliente)
     {
         $this->clientes[] = $cliente;
+    }
+
+    public function getPersist()
+    {
+        return $this->clientes;
     }
 
     public function flush()

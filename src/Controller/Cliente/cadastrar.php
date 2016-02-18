@@ -23,10 +23,11 @@ $connect = new Model\ServiceDB\ConnectDB();
 $conn = $connect->getConn();
 $crud = new Model\ServiceDB\ClienteDB($conn);
 $crud->persist($cliente);
-$resultado = $crud->persist();
+$resultado = $crud->flush();
 
 if($resultado == true){
    header ('Location: ../../../index.php');
+} else {
+   echo "ERRO";
 }
 
-echo "ERRO";
